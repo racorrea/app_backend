@@ -8,6 +8,5 @@ public interface IPersonaService {
     public List<Persona> listar();
     public Persona findById(Integer id);
     public Persona save (Persona persona);
-    public Persona actualizar(Persona persona);
     public void delete (Integer id);
 }

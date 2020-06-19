@@ -2,10 +2,9 @@ package com.racoservices.controller;
 
 import java.util.List;
 
-import com.racoservices.model.Persona;
-import com.racoservices.service.IPersonaService;
+import com.racoservices.model.Producto;
+import com.racoservices.service.IProductoService;
 
-import org.hibernate.annotations.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,35 +16,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/personas")
-public class PersonaController {
-    
+@RequestMapping("/productos")
+public class ProductoController {
+
     @Autowired
-    IPersonaService service;
+    IProductoService service;
 
     @GetMapping
-    public List<Persona> listar (){
+    public List<Producto> listar() {
         return service.listar();
     }
 
     @PostMapping
-    public Persona guardar(@RequestBody Persona persona){
-        return service.save(persona);
+    public Producto guardar(@RequestBody Producto producto) {
+        return service.save(producto);
     }
 
     @PutMapping("/{id}")
-    public Persona actualizar(@RequestBody Persona persona, @PathVariable Integer id){
-        Persona npersona = service.findById(id);
+    public Producto actualizar(@RequestBody Producto producto, @PathVariable Integer id) {
+        Producto nProducto = service.findById(id);
 
-        npersona.setNombres(persona.getNombres());
-        npersona.setApellidos(persona.getApellidos());
+        nProducto.setMarca(producto.getMarca());
+        nProducto.setNombre(producto.getNombre());
 
-        return service.save(npersona);
+        return service.save(nProducto);
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Integer id){
+    public void eliminar(@PathVariable Integer id) {
         service.delete(id);
     }
-
 }

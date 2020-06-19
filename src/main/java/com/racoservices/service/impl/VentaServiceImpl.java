@@ -2,36 +2,37 @@ package com.racoservices.service.impl;
 
 import java.util.List;
 
-import com.racoservices.model.Persona;
-import com.racoservices.repo.IPersonaRepo;
-import com.racoservices.service.IPersonaService;
+import com.racoservices.model.Venta;
+import com.racoservices.repo.IVentaRepo;
+import com.racoservices.service.IVentaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonaServiceImpl implements IPersonaService {
+public class VentaServiceImpl implements IVentaService {
 
     @Autowired
-    IPersonaRepo repo;
+    IVentaRepo repo;
 
     @Override
-    public List<Persona> listar() {
+    public List<Venta> listar() {
         return repo.findAll();
     }
 
     @Override
-    public Persona findById(Integer id) {
+    public Venta findById(Integer id) {
         return repo.findById(id).orElse(null);
     }
 
     @Override
-    public Persona save(Persona persona) {
-        return repo.save(persona);
+    public Venta save(Venta venta) {
+        return repo.save(venta);
     }
 
     @Override
     public void delete(Integer id) {
         repo.deleteById(id);
     }
+    
 }
